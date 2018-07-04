@@ -15,7 +15,7 @@ More information: [N. Ballesteros et al., *J. Aquac. Res. Development* **6**, 32
 
 To cite the code, please proceed as follows:
 
-[![DOI](https://zenodo.org/badge/91266409.svg)](https://zenodo.org/badge/latestdoi/91266409)
+[![DOI](https://zenodo.org/badge/139765551.svg)](https://zenodo.org/badge/latestdoi/139765551)
 
 Scheme of the pathway analysis program and its search into different databases such as NCBI and KEGG. The diagram of Gene2Path is represented in the yellow cells, showing the automated steps of the program. The cells in green represent the databases or external programs used by Gene2Path. Arrows indicate the databases needed to follow up each one of the program steps. Into the rose cells are mentioned the archives extensions used by Gene2Path: txt are the gProccesedSignal of each of the genes from the microarray “input data”; the xml archives are obtained from the external program BLAST2GO and are used by the Gene2Path program to process and organize the blastX information. The Dictionary section provided, if needed, the gene identification codes (ID), obtained from the NCBI GeneBank for each one of the genes.
 
