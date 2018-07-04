@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>gene2path:dictionary</title>
+  </head>
+  <body> <br>
+    <br>
+    The sequences for a selected group of genes (list/Accession/Number) can be
+    obtained in a <b>'fasta'</b> format using the getFASTA program. The gene
+    list contains the <b>'Accession Numbers'</b> from GenBank.<br>
+    <br>
+    <form method="post" action="dictionary.cgi" enctype="multipart/form-data" name="troutDictForm">
+      <table style="text-align: left; width: 60px; margin-left: auto; margin-right: auto;"
+        border="1" cellpadding="20" cellspacing="0">
+        <tbody>
+          <tr>
+            <td colspan="1" style="background-color: #ffff99; width: 60px; text-align: left;">Enter
+              accession number(s)<br>
+              <textarea cols="60" rows="5" name="genesIDList">AF115530</textarea>
+              <br>
+              <input enctype="multipart/form-data" name="genesIDListFile" type="file"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><input name="fasta" type="checkbox">
+              To obtain FASTA sequence(s)<br>
+              <br>
+              Find matches within the file<br>
+              <input name="fileToFind" disabled="disabled" type="file"><br>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1" style="vertical-align: top;"> <button name="Send" value="Send">Send</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </form>
+    <br>
+    <br>
+  </body>
+</html>

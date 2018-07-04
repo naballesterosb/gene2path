@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>gene2path:orthology</title>
+  </head>
+  <body><br>
+    By searching three NCBI databases, the <strong>'Orthology'</strong> program
+    provides a tool to identify a homologous gene in another species. This
+    program requires only two parameters to be entered: the <strong>'accession
+      number'</strong> corresponding to the identification code of the gene
+    selected; and the <strong>'species'</strong> for which the search is being
+    performed.<br>
+    <br>
+    <br>
+    <form method="post" enctype="multipart/form-data" action="homology.cgi" name="troutDictForm">
+      <table style="text-align: left; width: 60px; margin-left: auto; margin-right: auto;"
+        border="1" cellpadding="20" cellspacing="0">
+        <tbody>
+          <tr>
+            <td colspan="2" style="background-color: #ffff99; width: 60px; text-align: left;">Search
+              type:&nbsp;
+              <select name="searchType">
+                <option selected="selected" value="individual">Individual</option>
+                <option value="collective">Collective</option>
+                <option value="blast2go">blast2go</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">Enter accession number<br>
+              <input value="DR005235.1" name="gbID"> <br>
+              <br>
+              <input onchange="javascript:document.troutDictForm.specie.disabled=true;"
+                name="list" type="checkbox"> Specie(s) list<br>
+              <br>
+              Specie <br>
+              <input value="D.rerio" name="specie"> <br>
+            </td>
+            <td style="vertical-align: top;">Enter accession numbers <textarea
+                cols="40" rows="10" name="geneList">JC000211 JC002169 JC002172
+                JC002173 JC002211 JC002212 JC002236 </textarea><br>
+              <br>
+              Specie<br>
+              <input value="D.rerio" name="specieMult"><br>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" rowspan="1" style="vertical-align: top;">blast2go
+              file (*.xml)<br>
+              <input name="fileBlast2go" accept="*.xml" type="file">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input checked="checked" name="checkBoxGetSpeciesBlas2go" type="checkbox">
+              Specie(s) list<br>
+              <br>
+              Specie<br>
+              <input name="textSpecieBlast2go"><br>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="vertical-align: top;"> <button name="Send" value="Send">Send</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </form>
+    <br>
+    <br>
+  </body>
+</html>

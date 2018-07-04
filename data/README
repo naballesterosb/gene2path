@@ -1,0 +1,47 @@
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ENGLISH VERSION
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+FILE.dict
+=========
+    This file contains the genes and its synonyms found in NCBI databases. troutDict.sh file used this file.
+    
+fasta
+=====
+    This folder (FILE.dict) has the FASTA format sequences the microarray Agilent Trout 8x15K 
+
+MICROARRAY.dict
+===============
+
+    This folder has all genes included into the microarray Agilent trout 8x15K
+
+MICROARRAY-RAW
+==============
+
+
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+VERSION EN CASTELLANO
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+FILE.dict
+=========
+    Contiene los genes (y sus sinónimos) que fueron localizados en las bases de datos de NCBI. Es internamente utilizado por el archivo troutDict.sh
+
+fasta
+=====
+    Directorio que contiene los ficheros con las secuencias fasta de todos los genes presentes en el fichero FILE.dict
+
+MICROARRAY.dict
+===============
+    Contiene todos los genes presentes en el microarray
+
+MICROARRAY-RAW
+==============
+

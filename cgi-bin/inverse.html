@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>gene2path:inverse</title>
+  </head>
+  <body>
+    <div style="text-align: center;">
+      <p class="western" style="margin-bottom: 0in" align="left"><span lang="en-GB">This
+          step is that of finding all the genes involved in a particular KEGG
+          pathway that are identified by a keggID label. All the data related to
+          the selected KEGG are obtained from the KEGG2 database (</span><font color="#000080"><span
+            lang="zxx"><u><a class="western" href="http://www.genome.jp/kegg/kegg2.html">http://www.genome.jp/kegg/kegg2.html</a></u></span></font><span
+          lang="en-GB">) and the data obtained are saved in a file that
+          contains: the KEGGData image, the module information for which the
+          conversion codes of the image-gene number are stored; and the
+          respective sequences in FASTA format.</span></p>
+      <br>
+      <br>
+      <table style="text-align: left; margin-left: auto; margin-right: auto; width: 40%;"
+        border="1" cellpadding="20" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;">
+              <form method="get" action="inverse.cgi" name="inverseForm">KEGG ID<br>
+                <input name="keggId" value="hsa05120" align="right"><br>
+                <br>
+                Specie (codes <a href="http://www.kegg.jp/kegg/catalog/org_list.html">here</a>)<br>
+                <input value="hsa" name="specie"><br>
+                <br>
+                <input checked="checked" name="getFasta" type="checkbox"> To
+                obtain FASTA sequence(s)<br>
+                <br>
+                <button name="submit">Send</button> </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </div>
+  </body>
+</html>

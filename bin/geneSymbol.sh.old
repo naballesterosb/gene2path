@@ -1,0 +1,143 @@
+#!/bin/bash 
+
+symbolFromNUCCORE(){
+	ID=$1
+	
+	rm -rf .tmp
+# 	mkdir .tmp
+	
+	####################################################
+	# Busqueda en nuccore
+# 	httrack www.ncbi.nlm.nih.gov/nuccore/$ID -O .tmp > /dev/null
+# 	href=`grep -A10 "More about the" .tmp/www.ncbi.nlm.nih.gov/nuccore/*.html | grep "<a href=" | gawk 'BEGIN{FS="\""}{print $2}'`
+	
+	jwget "http://www.ncbi.nlm.nih.gov/nuccore/$ID" > .tmp 2> /dev/null
+	href=`grep -A10 "More about the" .tmp | grep "<a href=" | gawk 'BEGIN{FS="\""}{print $2}'`
+	
+# 	genBank=`grep "\"itemid\">GenBank:" .tmp/www.ncbi.nlm.nih.gov/nuccore/*.html \
+# 		| sed 's/[<>]/ /g' \
+# 		| gawk '{for(i=1;i<=NF;i++){if($i~/GenBank:/){ print $(i+1); exit }}}' \
+# 		| sed '{s/[[:blank:]]+//g}'`
+
+	genBank=`grep "\"itemid\">GenBank:" .tmp \
+		| sed 's/[<>]/ /g' \
+		| gawk '{for(i=1;i<=NF;i++){if($i~/GenBank:/){ print $(i+1); exit }}}' \
+		| sed '{s/[[:blank:]]+//g}'`
+	
+	if [ -n "$href" ]
+	then
+		wget $href -O .tmpPage 2> /dev/null
+		
+		genID=`grep -A2 "Gene ID:" .tmpPage | gawk 'BEGIN{FS="[:,]+"}{print $2;exit}' | sed -r '{s/[[:blank:]]+//g}'`
+		
+		genSymbol=`grep -A1 "Gene symbol" .tmpPage | tail -n1 | gawk 'BEGIN{FS="[<>]"}{print $3}'`
+		if [ -z "$genSymbol" ]
+		then
+			genSymbol=`grep -A2 "noline.*Official" .tmpPage | tail -n1 | sed '{s/[<>]/ /g}' | gawk '{print $3}'`
+		fi
+		
+		rm -rf .tmpPage
+	fi
+	
+	####################################################
+	# Busqueda en gene
+# 	if [ -z "$genID" ]
+# 	then
+# 		wget "http://www.ncbi.nlm.nih.gov/gene/?term=$ID" -O .tmpPage > /dev/null 2> /dev/null
+# 		
+# 		genID=`grep -A2 "Gene ID:" .tmpPage | gawk 'BEGIN{FS="[:,]+"}{print $2;exit}' | sed -r '{s/[[:blank:]]+//g}'`
+# 		
+# 		genSymbol=`grep -A1 "Gene symbol" .tmpPage | tail -n1 | gawk 'BEGIN{FS="[<>]"}{print $3}'`
+# 		if [ -z "$genSymbol" ]
+# 		then
+# 			genSymbol=`grep -A2 "noline.*Official" .tmpPage | tail -n1 | sed '{s/[<>]/ /g}' | gawk '{print $3}'`
+# 		fi
+# 		echo $ID > output
+# 		echo $genID >> output
+# 		echo $genSymbol >> output
+# 		exit
+# 		rm -rf .tmpPage
+# 	fi
+	
+	if [ -z "$genSymbol" ]
+	then
+		echo "id:$ID genID:$genID genBank:==>>$genBank<<=="
+	else
+		echo "id:$ID genID:$genID genSym:$genSymbol genBank:==>>$genBank<<=="
+	fi
+	
+	rm -rf .tmp
+	
+# 	title=`grep -A1 "class=\"rprtheader\"" .tmp/www.ncbi.nlm.nih.gov/nuccore/$ID.html | tail -n1 | gawk 'BEGIN{FS="[<>]"}{print $3}' | sed 's/ /_/g'`
+# 	
+# 	if [ -n "$title" ]
+# 	then
+# 		echo "$title     `troutDict.sh $ID`"
+# 	fi
+	
+# 	wget $link -O .tmpPage > /dev/null 2> /dev/null
+# 	
+# 	if [ -f .tmpPage ]
+# 	then
+# 		symbol=`grep -A1 "Gene symbol" .tmpPage | tail -n1 | gawk 'BEGIN{FS="[<>]"}{print $3}'`
+# 		descrip=`grep -A1 "Gene description" .tmpPage | tail -n1 | gawk 'BEGIN{FS="[<>]"}{print $3}' | sed 's/ /_/g'`
+# 
+# 		echo "$symbol        $descrip     `troutDict.sh $ID`"
+# 	fi
+
+}
+
+symbolFromNUCEST(){
+	ID=$1
+	
+	rm -rf .tmp
+# 	mkdir .tmp
+
+# 	httrack http://www.ncbi.nlm.nih.gov/nucest/$ID -O .tmp > /dev/null
+
+	jwget "http://www.ncbi.nlm.nih.gov/nucest/$ID" > .tmp 2> /dev/null
+	href=`grep -A10 "More about the" .tmp | grep "<a href=" | gawk 'BEGIN{FS="\""}{print $2}'`
+	
+# 	if [ -f .tmp/www.ncbi.nlm.nih.gov/nucest/$ID.html ]
+# 	then
+# 		link=`grep -A10 "More about the" .tmp/www.ncbi.nlm.nih.gov/nucest/$ID.html | grep "<a href=" | gawk 'BEGIN{FS="\""}{print $2}'`
+# 	else
+# 		return
+# 	fi
+	
+	if [ -n "$href" ]
+	then
+		wget $href -O .tmpPage 2> /dev/null
+	fi
+	
+# 	wget $link -O .tmpPage > /dev/null 2> /dev/null
+	
+	if [ -f .tmpPage ]
+	then
+		symbol=`grep -A2 "Official" .tmpPage | grep -A1 "Symbol" | tail -n1 | gawk 'BEGIN{FS="[<>]"}{print $3}'`
+		fullName=`grep -A2 "Official" .tmpPage | grep -A1 "Full Name" | tail -n1 | gawk 'BEGIN{FS="[<>]"}{print $3}' | sed 's/ /_/g'`
+
+		echo "$symbol     $fullName     `troutDict.sh $ID`"
+	fi
+	
+	rm -rf .tmpPage .tmp
+}
+
+main(){
+	label=$1
+	
+	output=`symbolFromNUCCORE $label`
+	
+	if [ -z "$output" ]
+	then
+		output=`symbolFromNUCEST $label`
+	fi
+	
+	if [ -n "$output" ]
+	then
+		echo $output
+	fi
+}
+
+main $*
+

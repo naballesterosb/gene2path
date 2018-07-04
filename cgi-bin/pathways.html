@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>gene2path:kegg</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body><br>
+    To obtain KEGG lists for the gene identified in each species (according to
+    the gene ID). Thus, the program searches for the respective gene from a
+    given species in the KEGG_PATHWAY database
+    (http://www.genome.jp/kegg/pathway.html), obtaining and examining the KEGG
+    lists (keggData) to define their ID, url, description name and additional
+    data.<br>
+    <br>
+    <form method="get" action="pathways.cgi" name="troutDictForm">
+      <table style="text-align: left; width: 80px; margin-left: auto; margin-right: auto;"
+        border="1" cellpadding="20" cellspacing="0">
+        <tbody>
+          <tr>
+            <td colspan="2" style="background-color: #ffff99; width: 60px; text-align: left;">Search
+              Type:&nbsp;
+              <select name="searchType">
+                <option selected="selected" value="individual">Individual</option>
+                <option value="collective">Collective</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;">Enter Gene ID<br>
+              <input value="573095" name="geneID"> <br>
+              <br>
+              Specie (codes <a href="http://www.kegg.jp/kegg/catalog/org_list.html">here</a>)<br>
+              <input value="dre" name="specie"> <br>
+              <br>
+              <a href="http://www.kegg.jp/kegg/catalog/org_list.html"></a><br>
+              <br>
+              <input checked="checked" name="checkBoxListKEGG" type="checkbox">
+              List<br>
+              <input name="checkBoxDetailsKEGG" type="checkbox"> List and
+              details<br>
+            </td>
+            <td style="vertical-align: top;">Enter Gene IDs<br>
+              <textarea name="geneList" rows="10" cols="40">573095 393557 </textarea><br>
+              <br>
+              Specie (codes <a href="http://www.kegg.jp/kegg/catalog/org_list.html">here</a>)<br>
+              <input value="dre" name="specieMult"><br>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="vertical-align: top;"> <button name="Send" value="Send">Send</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <br>
+    <br>
+  </body>
+</html>

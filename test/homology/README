@@ -1,0 +1,93 @@
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ENGLISH VERSION
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+With the homology command, we can search whether the GenBank ID
+accessed by the user is associated with similar proteins by sequence alignment
+in the RefSeq Protein database, using NCBI facilities, such as UniGen, Gene
+and homoloGene.
+
+The first step consists of searching for similar proteins in several organisms,
+e.g.,
+
+	$ homology.sh -i AF002173.1 -l
+		O.latipes
+		T.rubripes
+		D.rerio
+	
+Later, the user can choose the specific species of interest and obtain data from
+the search, such as the percentage homology, prot ID, name and Gene ID.
+
+* Input file format: The species name comes at the end of the command and
+only the first word used is in uppercase, corresponding to the genus, followed
+by a point and then the species name in lowercase. Spaces should not be used.
+
+The options for the last command are shown here:
+
+	$ homology.sh -i AF002173.1 -s D.rerio
+           UniGeneTrout: 2897711
+           Omy: 35863
+	     D.rerio
+             gbID: AF002173.1
+             protID: NP_956700.1
+             protName: hypothetical_protein_LOC393377
+             ld: 54.5
+             len: 345
+             geneURL: /sites/entrez?db=protein&cmd=Link&LinkName=protein_gene&from_uid=57528839
+             geneID: 393377
+             geneSym:
+			
+As can be seen, the output file includes the URL from which the data is
+reported, which may be useful if the user wants to verify or find additional
+related data.
+
+If there are enough genes, the results are saved directly to a file with an
+extension “.out”, which can be viewed with WordPad or a similar programme.
+
+The getAll.sh command can be used to obtain extended data from an input
+file that can be processed. The format of the gene input file should be the
+GenBank IDs, organized in a single column and saved in text format (“.txt”). The
+command to use is:
+
+$ ./getAll.sh SelectedSpecie > OutputFileName.out
+
+e.g., $ ./getAll.sh D.rerio > Omy-Dre.out
+			
+			
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+VERSION EN CASTELLANO	
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+El comando homology, permite consultar en diferentes bases de datos del NCBI tales como UniGen, Gene y EST, si el GeneBankID del
+gen que es consultado por el usuario presentan proteinas similares al comparar a través de RefSeq Proteins grupos de transcripción, ya que 
+las alineaciones de las secuencias pueden sugerir la función del grupo o cluster.
+
+La primera fase del programa consiste en buscar proteinas similares en diferentes organismos, por ejemplo:
+	
+	$ homology.sh -i AF002173.1 -l
+	  O.latipes
+	  T.rubripes
+	  D.rerio
+	
+El usuario puede elegir la especie que prefiera, para obtener algunos datos sobre la busqueda
+realizada como el porcentaje de homología, la especie elegida, el protID (proteínas), el nombre y su geneID.
+
+	$ homology.sh -i AF002173.1 -s D.rerio
+           UniGeneTrout: 2897711
+           Omy: 35863
+	     D.rerio
+             gbID: AF002173.1
+             protID: NP_956700.1
+             protName: hypothetical_protein_LOC393377
+             ld: 54.5
+             len: 345
+             geneURL: /sites/entrez?db=protein&cmd=Link&LinkName=protein_gene&from_uid=57528839
+             geneID: 393377
+             geneSym:
+		     
+
+
+	

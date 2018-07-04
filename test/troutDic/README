@@ -1,0 +1,35 @@
+
+
+La primera prueba consiste en buscar todos los sinonimos disponibles de un gen en específico respecto a sus IDs.
+
+Suponiendo que tenemos el gi 118596559, sus sinónimos pueden ser buscados así:
+
+$ troutDict.sh 118596559
+          gi:118596559                dbj:AB258536.1                      JC002207
+
+Ahora, si deseamos el archivo fasta del gen, colocamos la siguiente opción:
+
+$ troutDict.sh -fasta 118596559
+
+>gi|118596559|dbj|AB258536.1| Oncorhynchus mykiss Onmy-LDA gene for MHC class I antigen, allele: Onmy-LDA*0101, and other genes, complete cds
+AAGCTTTGTCAAGTTGGCTGTTGATCATTGCTAGAAAGCCATTTTCATGTTTTGCCATAGATTTTCTGAT
+TTGAGTCAAAATTGTACCTACGTCTCTCAGGAAAATTCGCCTTGGTAAGCCACTCCAGTTTGGCCTTGTG
+...
+TCTTGGTAGATTTGCAGTGGTCTGATACTCCTTCCATTTCAATATTATCGCTTGCACAGTGCTCCTTGGG
+ATGTTTAAAGCTT
+
+Otra aplicabilidad para este comando es si se requieren conocer todos los IDs de los genes a que tenemos acceso excepto de los genes
+que se encuentren en el archivo 
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$ cat pruebaBusqueda
+Esto es una prueba asi es que utilizaremos
+este gen ID 42491222 y este otro también AF058707.1, por lo que la
+salida deben ser todos los genes excepto los que he anotado anteriormente.
+
+
+Para utilizar la busqueda inversa, se puede hacer:
+
+$ troutDict.sh -vfile=pruebaBusqueda.txt 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+

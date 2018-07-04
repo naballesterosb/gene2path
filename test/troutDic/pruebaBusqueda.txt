@@ -1,0 +1,6 @@
+
+
+Esto es una prueba asi es que utilizaremos
+este gen ID 42491222 y este otro también AF058707.1, por lo que la
+salida deben ser todos los genes excepto los que he anotado anteriormente.
+

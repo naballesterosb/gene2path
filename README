@@ -1,0 +1,25 @@
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ENGLISH VERSION
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+For install the software
+
+$ ln -s $PWD/gene2path $HOME/
+
+The software used httrack
+$ sudo apt-get install httrack
+
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+VERSION EN CASTELLANO
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Para instalar solo hay que escribir
+
+$ ln -s $PWD/gene2path $HOME/
+
+los programas utilizan extensivamente httrack
+$ sudo apt-get install httrack

@@ -1,0 +1,51 @@
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ENGLISH VERSION
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+The following command extracts the pathway's image from the KEGG database
+in PNG format, and Fasta files for each gene involved.
+
+$ KEGG.sh -k KEGG ID -s singleEspecie
+
+e.g., $ KEGG.sh -k hsa04710 -s hsa
+
+hsa04710.fasta hsa04710.png
+
+The Fasta file can be used to make the projections to the desired species using
+the Blast2GO and homology programmes.
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+VERSION EN CASTELLANO
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Comience por obtener toda la información necesaria para cada KEEG
+
+$ for item in dre04010 dre04210 ; do KEGG.sh -k $item -s dre; done
+
+Ejecute blast2go desde el sitio web oficial http://www.blast2go.com/b2glaunch/start-blast2go, cargando
+los ficheros fasta anteriormente generados para cada KEEG y ejecute "Run BLAST Step", cambiando el parametro "Number of Blast Hits" a un
+valor grande, por ejemplo 200. Salve el fichero blastResult.xml en este mismo directorio, cambiandole el nombre de forma adecuada,
+para este ejemplo, serian convenientes los siguientes nombres: dre04010.xml y dre04210.xml.
+
+Finalmente proyecte estos genes sobre la especie deseada, por ejemplo "Oncorhynchus mykiss"
+
+$ for ifile in `ls *.xml`; do blastResult2geneID.sh $ifile "Oncorhynchus mykiss" > ${ifile%.*}.mykiss; done
+
+Para saber el nombre especifico de la especie, puede ejecutar previamente:
+
+$ blastResult2geneID.sh dre04010.xml -l | grep mykiss
+                               Oncorhynchus mykiss     21
+                       Oncorhynchus mykiss irideus      1
+
+El resultado final el KEGG de dre proyectado en "Oncorhynchus mykiss"
+
+$ head -n4 dre04010.mykiss
+#GenIDBase     JCIDBeg        JCIDEnd        GenID          GenSym         GenBank        protACC        %h    Prot.Description                                                      
+114461         --             --             --             --             --             NP_001158656   33.3  Tumor_necrosis_factor_receptor_superfamily_member_5_[Oncorhynchus_mykiss]_&gt;gi...
+100135062      --             --             --             --             --             NP_001233265   23.4  IL-4_receptor-2_precursor_[Oncorhynchus_mykiss]_&gt;gi|317453177|emb|CBL94861.1|...
+30590          --             --             --             --             --             AAF78533       69.7  tumor_supressor_p53,_partial_[Oncorhynchus_mykiss]_&gt;gi|8698974|gb|AAF78534.1|...
+ 

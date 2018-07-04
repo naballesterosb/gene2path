@@ -1,0 +1,40 @@
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ENGLISH VERSION
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+If the webpage server is established in ~/public_html
+the cgi scripts and Gene2Path software files have been installed $HOME/gene2path,
+
+$ cd ~/public_html
+$ ln -s $HOME/gene2path/cgi-bin
+
+For confirm the installation, write the following URL into an navegador web
+
+http://localhost/cgi-bin/index.cgi
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+VERSION EN CASTELLANO
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Asumiendo que el servidor tiene disponible el directorio ~/public_html
+Los scripts cgi y archivos del software gene2path serán instalados en el siguiente directorio $HOME/gene2path,
+y la instalacion será simplemente así:
+
+$ cd ~/public_html
+$ ln -s $HOME/gene2path/cgi-bin
+
+Puede comprobar la instalación escribiendo la siguiente dirección web en un navegador
+
+http://localhost/cgi-bin/index.cgi
+
+Si la instalación será bajo un sistema operativo linux, se recomienda modificar los ficheros html con kompozer, nvu o bluegriffon, así:
+
+$ wget http://bluegriffon.org/freshmeat/1.5.2/BlueGriffon-1.5.2-Ubuntu11.10-x86_64.tar.bz2
+$ mv BlueGriffon-1.5.2-Ubuntu11.10-x86_64.tar.bz2 /opt/
+$ cd /opt
+$ tar xvfj BlueGriffon-1.5.2-Ubuntu11.10-x86_64.tar.bz2
+$ ln -s /opt/BlueGriffon/bluegriffon /usr/bin/
+
+Fin de la instalación.

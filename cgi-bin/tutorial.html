@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+    <title>gene2path:tutorial</title>
+  </head>
+  <body>
+    <div style="text-align: center;"><br>
+      <div align="left"><big><big style="font-weight: bold;">Gene2Path: a
+            software to find orthologous genes and to generate KEGG pathways in
+            uncommon species.</big></big><br>
+      </div>
+      <big><big style="font-weight: bold;"> <br>
+        </big></big><big style="font-weight: bold;"><big></big></big><span style="font-weight: bold;"><img
+          alt="" src="https://lh5.googleusercontent.com/-6PN6PGyahc4/UQBKHiFaEBI/AAAAAAAAAFM/otIwzeHmY-U/s640/EsquemaGene2Path1.png"
+          height="412" width="407"></span><br>
+      <div role="article" style="text-align: justify;"><span style="font-weight: bold;"><br>
+        </span><font face="Times New Roman, Times, serif">Scheme of the pathway
+          analysis program and its search into different databases such as NCBI
+          and KEGG. The diagram of Gene2Path is represented in the yellow cells,
+          showing the automated steps of the program.<br>
+          <br>
+          The cells in green represent the databases or external programs used
+          by Gene2Path. Arrows indicate the databases needed to follow up each
+          one of the program steps. Into the rose cells are mentioned the
+          archives extensions used by Gene2Path: txt are the gProccesedSignal of
+          each of the genes from the microarray; the xml archives were obtained
+          from the external program BLAST2GO and are used by the Gene2Path
+          program to process and organize the blastX information. The Dictionary
+          section provide, if needed, the gene identification codes (ID),
+          obtained from the NCBI GeneBank for each one of the genes.</font> <font
+          face="Times New Roman, Times, serif"><br>
+          <br>
+          The scripts and programme are available at the &#8220;GENE2PATH&#8221; web site
+          and they include the following features: (1) The addition of synonyms
+          for gene identification by searching the NCBI database; (2) the
+          analysis of the intensity </font> <font face="Times New Roman, Times, serif"><br>
+          of the gProccesedSignal reading of the synonym names microarray input
+          files (extension txt); (3) Automated gene homology searches through
+          the Homologene, Gene and Unigene NCBI databases; (4) An automatic
+          filter was developed to find sequences similar by BLAST and to
+          visualize the xml output file and to deal with several files at the
+          same time; (5) Search for pathway information in the KEGG database
+          using gene homologues (Gene ID).<br>
+          <br>
+        </font>
+        <p class="western" style="line-height: 150%" align="CENTER" lang="en-GB">
+          <font face="Times New Roman, Times, serif"><b>GENE2PATH WEB TUTORIAL</b></font></p>
+        <p class="western" style="line-height: 150%" lang="en-GB"><font face="Times New Roman, Times, serif"><b>1.
+Dictionary,
+              gene symbol and download of the FASTA datafile.</b></font></p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+          <font face="Times New Roman, Times, serif">The programme can convert
+            the accession numbers into other code types available in the NCBI
+            database (such as gene identification -GI- in GenBank). Moreover, it
+            is possible to obtain the sequences from FASTA and to visualize the
+            gene symbol for each of the genes. The IDs given by the user (input
+            data) are run through the Nucleotide or EST sequence database, named
+            &#8220;nuccore&#8221; or &#8220;nucest&#8221;, respectively. </font> </p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+          <font face="Times New Roman, Times, serif">The web provides an easy
+            way to visualize the data and in our example, the FASTA download was
+            selected and the screening displayed.</font></p>
+        <div align="center"><img alt="" src="https://lh6.googleusercontent.com/-42STEMETjMo/UQR9NQAga3I/AAAAAAAAAHs/h4yK4oXsKQc/s763/Fig1.jpg"
+            height="398" width="484"><br>
+        </div>
+        <br>
+        <br>
+        <div align="center"><img alt="" src="https://lh3.googleusercontent.com/-3ACn3mT2diE/UQR8GrmYtpI/AAAAAAAAAGo/0IefUUedqwg/s762/Fig2.jpg"
+            height="399" width="483"><br>
+        </div>
+        <br>
+        <h3 class="western" style="margin-top: 0in; margin-bottom: 0.08in; background: #ffffff; line-height: 150%"
+          lang="en-GB"> <font face="Times New Roman, Times, serif"><font size="3">2.
+              Normalization and the level of gene expression from DNA microarray
+              data </font></font> </h3>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+          <font face="Times New Roman, Times, serif">The</font><font face="Times New Roman, Times, serif">
+          </font><font face="Times New Roman, Times, serif">programme</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">automates</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">the</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">analysis</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">of</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">the</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">data</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">generated</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">by</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">the</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">one-channel</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">microarray</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">scanner.
+            Values</font><font face="Times New Roman, Times, serif"> </font><font
+            face="Times New Roman, Times, serif">from</font><font face="Times New Roman, Times, serif">
+          </font><font face="Times New Roman, Times, serif">the</font><font face="Times New Roman, Times, serif">
+            &#8220;</font><font face="Times New Roman, Times, serif">g</font><font face="Times New Roman, Times, serif">&#8221;
+          </font><font face="Times New Roman, Times, serif">signal</font><font face="Times New Roman, Times, serif">
+          </font><font face="Times New Roman, Times, serif">process</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">file</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">in</font><font
+            face="Times New Roman, Times, serif"> the &#8220;</font><font face="Times New Roman, Times, serif">.txt</font><font
+            face="Times New Roman, Times, serif">&#8221; </font><font face="Times New Roman, Times, serif">format</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">were</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">used.</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">Among</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">the</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">programme</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">options,</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">the</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">user</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">can</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">choose</font><font
+            face="Times New Roman, Times, serif"> which of </font><font face="Times New Roman, Times, serif">the</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">data</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">files</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">correspond</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">to</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">control</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">or</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">experimental</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">groups,</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">and</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">the</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">gene</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">expression
+            fold</font><font face="Times New Roman, Times, serif"> </font><font
+            color="#000000" face="Times New Roman, Times, serif">with</font><font
+            color="#000000" face="Times New Roman, Times, serif"> </font><font
+            color="#000000" face="Times New Roman, Times, serif">their t-test</font><font
+            color="#000000" face="Times New Roman, Times, serif"> paired </font><font
+            color="#000000" face="Times New Roman, Times, serif">p-value</font><font
+            face="Times New Roman, Times, serif">. </font><font face="Times New Roman, Times, serif">In</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">our</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">example,</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">values</font><font
+            face="Times New Roman, Times, serif"> &#8805; </font><font face="Times New Roman, Times, serif">2</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">fold</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">were</font><font
+            face="Times New Roman, Times, serif"> </font><font face="Times New Roman, Times, serif">selected.</font></p>
+        <div align="center"><img alt="" src="https://lh4.googleusercontent.com/-hhrUx1a1KHw/UQR8NHyrWbI/AAAAAAAAAGw/BFsRodwutPA/s765/Fig3.jpg"
+            height="399" width="483">&nbsp;<br>
+        </div>
+        <br>
+        <div align="center"><img alt="" src="https://lh6.googleusercontent.com/-ScUoLUFFl68/UQR8Plx7JXI/AAAAAAAAAG4/Dw9pAy0RgKE/s766/Fig4.jpg"
+            height="411" width="483"><br>
+        </div>
+        <br>
+        <h3 class="western" style="margin-top: 0in; margin-bottom: 0.08in; background: #ffffff; line-height: 150%"
+          lang="en-GB"> <font face="Times New Roman, Times, serif">3.<span style="font-weight: normal">
+            </span>Homology<span style="font-weight: normal">:</span><span style="font-weight: normal">
+            </span></font> </h3>
+        <h3 class="western" style="margin-top: 0in; margin-bottom: 0.08in; background: #ffffff; font-weight: normal; line-height: 150%"
+          lang="en-GB"> </h3>
+        <h3 class="western" style="margin-top: 0in; margin-bottom: 0.08in; background: #ffffff; line-height: 150%"
+          lang="en-GB"> <font face="Times New Roman, Times, serif">3.1. <font
+              size="3">To</font><font size="3"> </font><font size="3">identify</font><font
+              size="3"> </font><font size="3">homology</font><font size="3"> </font><font
+              size="3">through</font><font size="3"> </font><font size="3">NCBI</font></font></h3>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+          <font face="Times New Roman, Times, serif">The procedure needs an
+            accession number as input. It first searchs for the corresponding
+            gene IDs in the GenBank by using Unigen, Gen and HomoloGene to
+            detect homology between the annotated genes or sequences of used
+            specie with entire eukaryote genomes. The results are visualized on
+            the web and the percentage of homology is annotated.</font></p>
+        <div align="center"><img alt="" src="https://lh4.googleusercontent.com/-yNaTtwtfDSQ/UQR8UBbv8EI/AAAAAAAAAHA/GA812DZW70s/s759/Fig5.jpg"
+            height="378" width="483"><br>
+        </div>
+        <br>
+        <br>
+        <div align="center"><img alt="" src="https://lh5.googleusercontent.com/-YHaPdJXoM0k/UQR8b-NV4jI/AAAAAAAAAHI/c8INl7V8RFE/s761/Fig6.jpg"
+            height="396" width="482"><br>
+        </div>
+        <br>
+        <br>
+        <h3 class="western" style="margin-top: 0in; margin-bottom: 0.08in; background: #ffffff; line-height: 150%"
+          lang="en-GB"> <font face="Times New Roman, Times, serif"><font size="3">3.2.
+              Identifying homology through BLAST2GO</font></font></h3>
+        <h3 class="western" style="margin-top: 0in; margin-bottom: 0.08in; background: #ffffff; font-weight: normal; line-height: 150%"
+          align="JUSTIFY" lang="en-GB"> <font face="Times New Roman, Times, serif"><font
+              size="3">The Gene2Path filters and organizes the results from the
+              Blast2GO program (&#8220;.xml&#8221; files) with respect to the homologous
+              species. As FASTA sequences from each of the genes are needed to
+              run the Blast2GO programme, we can use data obtained in the
+              Dictionary section.</font></font></h3>
+        <p class="western" style="line-height: 150%" align="JUSTIFY"><font face="Times New Roman, Times, serif"><span
+              lang="en-GB">Once</span><span lang="en-GB"> </span><span lang="en-GB">the</span><span
+              lang="en-GB"> </span><span lang="en-GB">BLAST2GO</span><span lang="en-GB">
+            </span><span lang="en-GB">programme </span><span lang="en-GB">(</span><font
+              color="#0000ff"><u><a href="http://www.blast2go.com/b2ghome">http://www.blast2go.com/b2ghome</a></u></font><span
+              lang="en-GB">) </span><span lang="en-GB">has</span><span lang="en-GB">
+            </span><span lang="en-GB">been</span><span lang="en-GB"> </span><span
+              lang="en-GB">installed</span><span lang="en-GB"> </span><span lang="en-GB">in</span><span
+              lang="en-GB"> </span><span lang="en-GB">the</span><span lang="en-GB">
+            </span><span lang="en-GB">computer</span><span lang="en-GB"> </span><span
+              lang="en-GB">and</span><span lang="en-GB"> </span><span lang="en-GB">configured,</span><span
+              lang="en-GB"> </span><span lang="en-GB">it</span><span lang="en-GB">
+            </span><span lang="en-GB">is</span><span lang="en-GB"> </span><span
+              lang="en-GB">necessary:</span></font></p>
+        <ol>
+          <li>
+            <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+              <font face="Times New Roman, Times, serif">To create a project
+                loading the FASTA files of the genes of interest. </font> </p>
+          </li>
+          <li>
+            <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+              <font face="Times New Roman, Times, serif">To select the BLAST
+                option in the window that automatically appears with several
+                modifiable parameters. In our example, we selected Blastx to
+                search for homologous proteins from a protein database starting
+                with the nucleotide sequences. This is a very useful tool when
+                the ORF is not known and it is commonly used in EST sequence
+                analysis due to its high sensitivity. </font> </p>
+          </li>
+          <li>
+            <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+              <font face="Times New Roman, Times, serif">To determine how many
+                results are visualized without changing the remaining
+                parameters. We selected 100 results instead of the 20 that are
+                given by default. </font> </p>
+          </li>
+        </ol>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+          <font face="Times New Roman, Times, serif"><font color="#000000">When</font><font
+              color="#000000"> </font><font color="#000000">the</font><font color="#000000">
+            </font><font color="#000000">Blast2go</font><font color="#000000"> </font><font
+              color="#000000">finish</font><font color="#000000"> </font><font
+              color="#000000">the</font><font color="#000000"> </font><font color="#000000">running</font><font
+              color="#000000"> </font><font color="#000000">of</font><font color="#000000">
+              &#8220;</font><font color="#000000">annotation</font><font color="#000000">&#8221;
+            </font><font color="#000000">application,</font><font color="#000000">
+            </font><font color="#000000">the</font><font color="#000000"> </font><font
+              color="#000000">user</font><font color="#000000"> </font><font color="#000000">can</font><font
+              color="#000000"> </font><font color="#000000">upload</font><font
+              color="#000000"> the resulting </font><font color="#000000">xml</font><font
+              color="#000000"> </font><font color="#000000">files. Those are
+              then used</font><font color="#000000"> </font><font color="#000000">for</font><font
+              color="#000000"> </font><font color="#000000">the</font><font color="#000000">
+            </font><font color="#000000">homology</font><font color="#000000"> </font><font
+              color="#000000">step</font><font color="#000000"> </font><font color="#000000">(named</font><font
+              color="#000000"> &#8220;</font><font color="#000000">homology</font><font
+              color="#000000">&#8221;</font><font color="#000000">)</font><font color="#000000">
+              in </font><font color="#000000">our</font><font color="#000000">
+            </font><font color="#000000">GENE2PATH</font><font color="#000000">
+            </font><font color="#000000">software.</font></font></p>
+        <p class="western" style="line-height: 150%" align="center" lang="en-GB"><img
+            alt="" src="https://lh5.googleusercontent.com/-7M-KvDOdrU4/UQR8dNqUyCI/AAAAAAAAAHQ/7GuPw0dALVg/s761/Fig7.jpg"
+            height="378" width="482"><font color="#000000"><font face="Arial, sans-serif"><br>
+            </font></font></p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB"><font
+            color="#000000"><font face="Arial, sans-serif"><br>
+            </font></font></p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB"><font
+            color="#000000"><font face="Arial, sans-serif"></font></font><font color="#000000"><font
+              face="Arial, sans-serif"></font></font><font color="#000000"><font
+              face="Arial, sans-serif"></font></font><font color="#000000"><font
+              face="Arial, sans-serif"></font></font><font color="#000000"><font
+              face="Arial, sans-serif"></font></font><font color="#000000"><font
+              face="Arial, sans-serif"><img alt="" src="https://lh6.googleusercontent.com/-SiXmUBw5xNw/UQR8gVvQrsI/AAAAAAAAAHY/dqBAGl0St2c/s760/Fig8.jpg"
+                height="416" width="484"></font></font><br>
+          <font face="Arial, sans-serif"><font color="#000000"></font></font></p>
+        <font color="#000000"><font face="Arial, sans-serif"><br>
+            <br>
+            <br>
+          </font></font><font face="Times New Roman, Times, serif">GENE2PATH
+          produces a table with the information shown as example:</font>
+        <p class="western" style="line-height: 150%" align="center" lang="en-GB"><font
+            color="#000000"><font face="Arial, sans-serif"><img alt="" src="https://lh4.googleusercontent.com/-nc6fhy8ioxk/UQR7ooD9W0I/AAAAAAAAAF8/spt7UQfEH68/s763/Fig10.jpg"
+                height="400" width="483"></font></font></p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB"><br>
+        </p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+        </p>
+        <p class="western" style="line-height: 150%" lang="en-GB"><font face="Times New Roman, Times, serif"><b>4.
+Identifying
+              KEGG pathways</b></font></p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+          <font face="Times New Roman, Times, serif">Gene IDs are necessary to
+            search genes in the KEGG pathways involved and this information can
+            be obtained from the homologous genes, as described above. </font>
+        </p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+        </p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+        </p>
+        <p class="western" style="line-height: 150%" align="center" lang="en-GB">
+          <img alt="" src="https://lh5.googleusercontent.com/-w3i7W7vHzbg/UQR7ou9eiXI/AAAAAAAAAF4/FzqMtLiQ9A0/s760/Fig11.jpg"
+            height="396" width="483"><br>
+        </p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB"><br>
+        </p>
+        <p class="western" style="line-height: 150%" align="center" lang="en-GB"><img
+            alt="" src="https://lh3.googleusercontent.com/-BJ3xQvCqMLE/UQR7vPPiaAI/AAAAAAAAAGI/vkwQ7UmSLHs/s800/Fig12.jpg"
+            height="396" width="483"><br>
+        </p>
+        <br>
+        <div align="center"><img alt="" src="https://lh4.googleusercontent.com/-YXm1_9tpcI8/UQR8BeNql6I/AAAAAAAAAGg/MM6BSJr2Q8g/s1242/Fig13.jpg"
+            height="260" width="484"><br>
+        </div>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB"><br>
+        </p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+        </p>
+        <p class="western" style="line-height: 150%" lang="en-GB"><font face="Times New Roman, Times, serif"><b>5.
+Reverse
+              Search of pathway</b></font></p>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+          <font face="Times New Roman, Times, serif">The web page shows the
+            boxes or components separated by horizontal broken lines, which
+            permits the genes to be assigned to a particular box. The user may
+            obtain the sequences for each of the genes in FASTA format for the
+            procedure. An example of a selected pathway and its corresponding
+            table, with the names of the KEGG boxes (KEGG components), as well
+            as their corresponding Gene IDs is shown.</font></p>
+        <div align="center"><img alt="" src="https://lh5.googleusercontent.com/-3iFJszxFd0Y/UQR74319kGI/AAAAAAAAAGQ/fI2_dCGNlL8/s764/Fig14.jpg"
+            height="396" width="483"><br>
+        </div>
+        <br>
+        <br>
+        <div align="center"><img alt="" src="https://lh4.googleusercontent.com/-_1UFxMoYEyU/UQR7_S1KScI/AAAAAAAAAGY/e2gVImj_ouk/s757/Fig15.jpg"
+            height="423" width="481"><br>
+        </div>
+        <br>
+        <br>
+        <br>
+        <p class="western" style="line-height: 150%" align="JUSTIFY" lang="en-GB">
+        </p>
+        <br>
+        <br>
+      </div>
+    </div>
+  </body>
+</html>

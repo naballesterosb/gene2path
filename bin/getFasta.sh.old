@@ -1,0 +1,185 @@
+#!/bin/bash
+
+usage()
+{
+cat << EOF
+	Usage:
+
+	Permite bajar el archivo fasta correspondiente dandole el genbankID access o el est
+	almacena la lista de los genes que no se pudieron bajar en la fichero "log" y los
+	si se bajaron se genera una archivo con el mismo nobre pero .fasta y tambien se adicionan
+	al final del archivo All.fasta
+	
+	$ geneBankID2Fasta.sh ID1 ID2 ...
+EOF
+}
+
+isInDataBase()
+{
+        local geneid=$1
+        local db=$2
+
+	case "$db" in
+		"gene")
+			wget "http://www.ncbi.nlm.nih.gov/$db?term=$geneid" -O salida.html 2> /dev/null
+			existe=`cat salida.html | grep "Gene ID:" | wc -l `
+
+			ID=`cat salida.html | grep "Gene ID:" | sed -r '{s/,//g ; s/[[:blank:]]+/\n/g}' | grep -A1 "ID" | tail -n1`
+			echo "$existe $ID"
+
+			rm salida.html
+			;;
+		"unigene")
+			;;
+		*)
+			echo "Database ($db) not supported !!!"
+			;;
+	esac
+}
+
+# dataBasis="gene unigene "
+# foundIn=""
+# 
+# for geneid in `gawk '{print $2}' TablaGenes.txt`
+# do
+#         for db in $dataBasis
+#         do
+#                 result=`isInDataBase $geneid $db`
+#                 
+#                 if [ `echo $result | gawk '{print $1}'` -ne 0 ]
+#                 then
+#                         foundIn=$db
+#                         break
+#                 else
+#                         foundIn="Unknown"
+#                 fi
+#         done
+#         
+#         echo "$result in $foundIn"
+# done
+
+
+# Solo sirve para buscar en nuccore
+getFasta()
+{
+	local dataBasis=$1
+	local geneID=$2
+	
+	case "$dataBasis" in
+		"nuccore")
+			# El problema de la busqueda reducida a nuccore es en esta linea
+			# porque $genBankId no es es patron de busqueda es el GeneBankGI
+			wget http://www.ncbi.nlm.nih.gov/$dataBasis/$geneID -O .tmp.html -o /dev/null
+			
+			ID=`grep "/$dataBasis/[[:digit:]]+\?" .tmp.html | gawk 'BEGIN{FS="[/?]"}(NR==1){ for(i=1;i<=NF;i++){ if($i=="'$dataBasis'") print $(i+1) } }'`
+			wget http://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi\?tool=portal\&sendto=on\&log\$=seqview\&db=$dataBasis\&dopt=fasta\&val=$ID\&extrafeat=0\&maxplex=1 -O $geneID.fasta -o /dev/null
+			rm .tmp.html
+			;;
+		"nucest")
+			wget http://www.ncbi.nlm.nih.gov/nucest?term=$geneID -O .tmp.html -o /dev/null
+			
+			ID=`gawk 'BEGIN{RS="[[:blank:]]+"}($0~/report=fasta/){print $0}' .tmp.html | gawk 'BEGIN{FS="[/\"?]"}{for(i=1;i<=NF;i++) if($i=="nucest") print $(i+1)}'`
+			wget http://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi\?tool=portal\&sendto=on\&log\$=seqview\&db=$dataBasis\&dopt=fasta\&val=$ID\&extrafeat=0\&maxplex=1 -O $geneID.fasta -o /dev/null
+			rm .tmp.html
+			;;
+		*)
+			echo "Database ($db) not supported !!!"
+			;;
+	esac
+}
+
+checkFasta()
+{
+	fastaFile=$1
+	gawk '
+	BEGIN{
+		ok=0
+		n=0
+	}
+	{
+		if(NR==1 && $1~/>.*/)
+			ok=1
+		
+		if(NR>1 && ($1~/[UCGTA]/||$1~/^[[:blank:]]*$/))
+			ok+=1
+
+		n++
+	}
+	END{
+		if(ok==n)
+			print "1"
+		else
+			print "0"
+	}
+	' $fastaFile
+}
+
+main(){
+	availableBD="nuccore nucest"
+	nGenes=$#
+	
+	if (( "$nGenes" == 0 ))
+	then
+		usage
+		exit 0
+	fi
+	
+	cat /dev/null > All.fasta
+	cat /dev/null > log
+
+	badIDs=""
+	if [ -f "logOld" ]
+	then
+		badIDs=`gawk 'BEGIN{FS="[:]"}{print $1}' logOld`
+	fi
+	
+	iGene=1
+	for geneID in $*
+	do
+		percentage=`echo "100*$iGene/$nGenes" | bc -l | gawk '{printf "%5.1f", $1}'`
+		
+		if [ -f "$geneID.fasta" ]
+		then
+			echo "The file $geneID.fasta exists !! ($percentage%)"
+		else
+			for db in $availableBD
+			do
+				isBadGene="0"
+				for badGen in $badIDs
+				do
+					if [ "$geneID" = "$badGen" ]
+					then
+						isBadGene="1"
+					fi
+				done
+				
+				if [ "$isBadGene" -eq "1" ]
+				then
+					echo "The file $geneID.fasta does not exists !! ($percentage%)"
+					break
+				fi
+				
+				echo -n "Downloading $geneID from $db ... "
+				getFasta $db $geneID
+				echo "OK ($percentage%)"
+			
+				echo -n "Checking integrity $geneID ... "
+				OK=`checkFasta $geneID.fasta`
+			
+				if [ $OK -eq 1 ]
+				then
+					echo "OK ($percentage%)"
+					cat $geneID.fasta >> All.fasta
+					break
+				else
+					echo "Failed !!"
+					echo "$geneID: Failed !!" >> log
+					rm $geneID.fasta
+				fi
+			done
+		fi
+		iGene=$(($iGene+1))
+	done
+}
+
+main $*

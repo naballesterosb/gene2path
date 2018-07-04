@@ -1,0 +1,63 @@
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ENGLISH VERSION
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+With this command, you can find pathways in the KEGG database using the
+Gene ID recovered with the homology programme.
+
+e.g., $ KEGG.sh [ -i geneID [-s AcronymSpecie] [-l] [-d] ] [ -k keggID [-s
+AcronymSpecie] [-c] ]
+
+OPTIONS
+-i geneID : Corresponds to Gene ID ( i.e. 9575 )
+
+-l : List of KEGGs ID involved it
+
+-d : List of the KEGGs involved and its details
+
+-s AcronymSpecies:
+
+Corresponds to the prefix for each species and that is available on the KEGG
+website: http://www.kegg.jp/kegg/catalog/org_list.html). By default, and if the
+user does not indicate otherwise, the pathways will be consulted in hsa (Homo
+sapiens).
+
+-k keggID: Returns in the KEGG ID in PNG format associated with
+keggID
+
+e.g., We want to find the 9575 genes involved into hsa pathways´s.
+
+Search the pathways associated with the hsa 9575 gene.
+
+$ KEGG.sh -i 9575 -l
+
+Output file:
+hsa04710
+hsa05168
+hsa04728
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+VERSION EN CASTELLANO
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+Con este comando se pueden construir pathways a través de la base de datos de KEGG, utilizando
+el GeneID obtenido del programa homology tanto en D. rerio como en H. sapiens para O. mykiss.
+
+$ KEGG.sh -i 9575 -l
+	hsa04710
+	hsa05168
+	hsa04728
+
+Este comando obtiene la imagen del KEGG y el archivo en formato fasta de todos
+los genes involucrados en él
+
+$ KEGG.sh -k hsa04710 -s hsa
+$ ls
+hsa04710.fasta  hsa04710.png
+
+el archivo fasta puede ser utilizado en blast2go para hacer la proyección por homología
+a la especie deseada
+

@@ -1,0 +1,23 @@
+-----------------------------------------------------------------------------
+Cambios en /etc/apache2/sites-available/default
+-----------------------------------------------------------------------------
+#       ScriptAlias /cgi-bin/ /usr/lib/cgi-bin/
+        ScriptAlias /cgi-bin/ /home/nestor/public_html/cgi-bin/
+#       <Directory "/usr/lib/cgi-bin">
+        <Directory "/home/nestor/public_html/cgi-bin/">
+                AllowOverride None
+                Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+# linea adicionada
+                SetHandler cgi-script
+                Order allow,deny
+                Allow from all
+# lineas adicionadas
+   Options Indexes
+   AuthType Basic
+   AuthName "Private Access"
+   AuthUserFile "/home/nestor/.htpasswd"
+   Require valid-user
+        </Directory>
+-----------------------------------------------------------------------------
+
+htpasswd -c .htpasswd gene2path
